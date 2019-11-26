@@ -20,7 +20,7 @@ app.get('/q1', (req, res) => {
 app.get('/q2', (req, res) => {
   console.log('Question Number 2')
   console.log('What are the names of countries that have “land” in their names ?')
-  connection.query('SELECT name FROM country', (err, rows, fields) => {
+  connection.query('SELECT name FROM country WHERE name LIKE "%land%"', (err, rows, fields) => {
     res.json(rows)
   })
 })
