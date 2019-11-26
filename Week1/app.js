@@ -2,12 +2,33 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const fs = require('fs');
+
+fs.readFile('databases/new_world.sql', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'hyfuser',
   password: 'hyfpassword',
-  database: 'new_world'
 })
+
+connection.connect(function (err) {
+  if (err) throw err;
+  console.log("Database is Connected!");
+  connection.query("CREATE DATABASE IF NOT EXISTS world; use new_world", function (err, result) {
+    if (err) throw err;
+    console.log("Database created");
+  });
+});
+
+
+app.get("/", (req, res) => {
+  console.log("Push Data to the database")
+})
+
 
 app.get('/q1', (req, res) => {
   console.log('Question Number 1')
@@ -49,10 +70,14 @@ app.get('/q5', (req, res) => {
   })
 })
 
-app.get("/", (req, res) => {
-  console.log("responding to root route")
-  res.send("Hello Alooosh >>>> here you can find the answer for week1 database questions")
+app.get('/q6', (req, res) => {
+  console.log('Question Number 6')
+  console.log("What are the names of all the cities in the Netherlands?")
+  connection.query("SELECT name as CityName FROM country order by SurfaceArea desc ", (err, rows, fields) => {
+    res.json(rows)
+  })
 })
+
 
 // localhost:888
 app.listen(888, () => {
