@@ -9,7 +9,6 @@ const connection = mysql.createConnection({
   database: 'new_world'
 })
 
-
 app.get('/q1', (req, res) => {
   console.log('Question Number 1')
   console.log('What are the names of countries with population greater than 8 million')
@@ -25,22 +24,10 @@ app.get('/q2', (req, res) => {
     res.json(rows)
   })
 })
-
-
-
-
 app.get("/", (req, res) => {
   console.log("responding to root route")
-  res.send("Hello from Rooooooooooot")
+  res.send("Hello Alooosh >>>> here you can find the answer for week1 database questions")
 })
-
-
-app.get('/users', (req, res) => {
-  const user1 = { firstname: "Ali", lastname: "Ahdab" }
-  const user2 = { firstname: "Jon", lastname: "Kery" }
-  res.json([user1, user2])
-})
-
 
 // localhost:888
 app.listen(888, () => {
