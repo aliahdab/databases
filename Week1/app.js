@@ -2,27 +2,13 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
-const fs = require('fs');
 
-fs.readFile('databases/new_world.sql', (err, data) => {
-  if (err) throw err;
-  console.log(data);
-});
 
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'hyfuser',
   password: 'hyfpassword',
 })
-
-connection.connect(function (err) {
-  if (err) throw err;
-  console.log("Database is Connected!");
-  connection.query("CREATE DATABASE IF NOT EXISTS world; use new_world", function (err, result) {
-    if (err) throw err;
-    console.log("Database created");
-  });
-});
 
 
 app.get("/", (req, res) => {
