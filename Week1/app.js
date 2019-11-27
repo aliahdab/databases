@@ -76,7 +76,7 @@ app.get('/q9', (req, res) => {
 })
 
 app.get('/q10', (req, res) => {
-  connection.query("select sum(population) as Population_OF_The_World_is fromf country", (err, rows, fields) => {
+  connection.query("select sum(population) as Population_OF_The_World_is from country", (err, rows, fields) => {
     if (err) { throw err; }
     res.json(rows)
   })
