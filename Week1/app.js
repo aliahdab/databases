@@ -10,6 +10,29 @@ const connection = mysql.createConnection({
   database: 'new_world'
 })
 
+app.get("/", (req, res) => {
+  const sqlQuery1 = 'create database if not exists world';
+  const sqlQuery2 = 'use world';
+  const sqlQuery3 = 'DROP TABLE IF EXISTS city';
+  const sqlQuery4 = 'CREATE TABLE city(ID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,Name VARCHAR(255),CountryCode VARCHAR(255),Population INT,)';
+  const sql = [sqlQuery1, sqlQuery2, sqlQuery3, sqlQuery4];
+  res.send("Hello Alooosh >>>> here you can find the answer for week1 database questions")
+  sql.forEach(q => connection.query(q, (err, rows, fields) => {
+    if (err) { throw err; }
+  }))
+})
+
+// localhost:888
+app.listen(888, () => {
+  console.log("Server is up and listening on 888")
+})
+
+
+
+
+
+
+
 app.get('/q1', (req, res) => {
   connection.query('SELECT name as CountryName,population as Population FROM country where population>8000000', (err, rows, fields) => {
     if (err) { throw err; }
@@ -83,12 +106,3 @@ app.get('/q10', (req, res) => {
 })
 
 
-app.get("/", (req, res) => {
-  console.log("responding to root route")
-  res.send("Hello Alooosh >>>> here you can find the answer for week1 database questions")
-})
-
-// localhost:888
-app.listen(888, () => {
-  console.log("Server is up and listening on 888")
-})
