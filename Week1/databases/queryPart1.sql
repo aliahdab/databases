@@ -44,7 +44,7 @@ CREATE TABLE country
       (1, 'karskrona', 60000, 5445),
       (1, 'Karlskrona', 344444, 56606),
       (2, 'Copenhagen', 800000, 45345),
-      (4, 'Damascus', 10000000, 54678);
+      (5, 'Damascus', 10000000, 54678);
 
 
 
