@@ -13,7 +13,7 @@ CREATE TABLE country
 
  CREATE TABLE city
   (
-    id INTAUTO_INCREMENT,country_id INT NOT NULL,
+    id INT AUTO_INCREMENT,country_id INT NOT NULL,
     name VARCHAR(30) NOT NULL UNIQUE,
     population INT NOT NULL,
     codeNumber INT NOT NULL,
