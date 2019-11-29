@@ -11,9 +11,11 @@ CREATE TABLE country
 (
   id INT
   AUTO_INCREMENT ,name VARCHAR
-  (30) NOT NULL UNIQUE ,capital VARCHAR
-  (30) NOT NULL ,population INT
-  (12) NOT NULL, PRIMARY KEY
+  (30) NOT NULL UNIQUE ,
+capital VARCHAR
+  (30) NOT NULL,population INT
+  (12) NOT NULL,
+ PRIMARY KEY
   (id));
 
   CREATE TABLE city

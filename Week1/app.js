@@ -28,11 +28,6 @@ app.listen(888, () => {
 })
 
 
-
-
-
-
-
 app.get('/q1', (req, res) => {
   connection.query('SELECT name as CountryName,population as Population FROM country where population>8000000', (err, rows, fields) => {
     if (err) { throw err; }
@@ -70,7 +65,7 @@ app.get('/q5', (req, res) => {
 })
 
 app.get('/q6', (req, res) => {
-  connection.query("SELECT name as CountryName ,SurfaceArea FROM country order by SurfaceArea desc ", (err, rows, fields) => {
+  connection.query('SELECT city.Name FROM city join country on city.CountryCode = country.Code WHERE country.Name = "Netherlands" ', (err, rows, fields) => {
     if (err) { throw err; }
     res.json(rows)
   })
