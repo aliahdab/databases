@@ -13,8 +13,7 @@ CREATE TABLE country
 
   CREATE TABLE city
   (
-    id INT
-    AUTO_INCREMENT,country_id INT NOT NULL,
+    id INT AUTO_INCREMENT,country_id INT NOT NULL,
     name VARCHAR(30) NOT NULL UNIQUE,
     population INT NOT NULL,
     codeNumber INT NOT NULL,
@@ -22,7 +21,7 @@ CREATE TABLE country
     FOREIGN KEY(country_id) REFERENCES country(id)
   );
 
-    INSERT INTO country
+  INSERT INTO country
       (name,capital,population)
     values
       ('SWEDEN', 'Stockholm', 9000000),
