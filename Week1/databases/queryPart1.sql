@@ -1,34 +1,24 @@
-CREATE DATABASE
-IF NOT EXISTS world;
-
+CREATE DATABASE IF NOT EXISTS world;
 USE world;
-
 DROP TABLE IF EXISTS city;
-
 DROP TABLE IF EXISTS country;
 
 CREATE TABLE country
 (
-  id INT
-  AUTO_INCREMENT ,name VARCHAR
-  (30) NOT NULL UNIQUE ,capital VARCHAR
-  (30) NOT NULL ,population INT
-  (12) NOT NULL, PRIMARY KEY
-  (id));
+  id INT AUTO_INCREMENT ,
+ name VARCHAR(30) NOT NULL UNIQUE,
+ capital VARCHAR(30) NOT NULL ,
+ population INT(12) NOT NULL,
+ PRIMARY KEY(id));
 
-  CREATE TABLE city
+ CREATE TABLE city
   (
-    id INT
-    AUTO_INCREMENT,country_id INT NOT NULL,name VARCHAR
-    (30) NOT NULL UNIQUE,population INT
-    (10) NOT NULL, codeNumber INT
-    (5) NOT NULL,PRIMARY KEY
-    (id),FOREIGN KEY
-    (country_id) REFERENCES country
-    (id));
-
-
-
+    id INTAUTO_INCREMENT,country_id INT NOT NULL,
+    name VARCHAR(30) NOT NULL UNIQUE,
+    population INT(10) NOT NULL,
+    codeNumber INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(country_id) REFERENCES country(id));
 
     INSERT INTO country
       (name,capital,population)
