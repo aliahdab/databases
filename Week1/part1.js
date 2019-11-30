@@ -1,5 +1,6 @@
 const util = require('util');
 const mysql = require('mysql');
+const mysql_import = require('mysql-import');
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -58,7 +59,15 @@ async function seedDatabase() {
       (2, 'Copenhagen', 800000, 45345),
       (5, 'Damascus', 10000000, 54678);`
 
-  connection.connect();
+  const CREATE_DATABASE_NEW_WORLD = ` CREATE DATABASE IF NOT EXISTS NEW_WORLD;`
+
+  const mydb_importer = mysql_import.config({
+    host: 'localhost',
+    user: 'hyfuser',
+    password: 'hyfpassword',
+    database: 'new_world',
+    onerror: err => console.log(err.message)
+  });
 
   try {
     // call the function that returns promise
@@ -70,6 +79,8 @@ async function seedDatabase() {
     await execQuery(CREATE_CITY_TABLE);
     await execQuery(INSERT_TO_COUNTRY);
     await execQuery(INSERT_TO_CITY);
+    await execQuery(CREATE_DATABASE_NEW_WORLD);
+    await mydb_importer.import('./databases/new_world.sql');
   } catch (error) {
     console.error(error);
   }
