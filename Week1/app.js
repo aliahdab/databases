@@ -65,7 +65,7 @@ app.get('/q5', (req, res) => {
 })
 
 app.get('/q6', (req, res) => {
-  connection.query('SELECT city.Name FROM city join country on city.CountryCode = country.Code WHERE country.Name = "Netherlands" ', (err, rows, fields) => {
+  connection.query('SELECT c.name FROM city as c join country as co on c.CountryCode = co.Code WHERE co.name = "Netherlands" ', (err, rows, fields) => {
     if (err) { throw err; }
     res.json(rows)
   })
