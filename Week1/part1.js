@@ -1,7 +1,6 @@
 const util = require('util');
 const mysql = require('mysql');
 const mysql_import = require('mysql-import');
-
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'hyfuser',
@@ -72,6 +71,7 @@ async function seedDatabase() {
   try {
     // call the function that returns promise
     await execQuery(CREATE_WORLD_DATABASE);
+    console.log('world database has been created')
     await execQuery(USE_TABLE_WORLD);
     await execQuery(DROP_CITY_TABLE);
     await execQuery(DROP_COUNTRY_TABLE);
@@ -81,6 +81,7 @@ async function seedDatabase() {
     await execQuery(INSERT_TO_CITY);
     await execQuery(CREATE_DATABASE_NEW_WORLD);
     await mydb_importer.import('./databases/new_world.sql');
+    console.log('new_world database has been created and intentioned with data')
   } catch (error) {
     console.error(error);
   }
