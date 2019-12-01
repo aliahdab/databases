@@ -44,6 +44,6 @@ CREATE TABLE country
       (2, 'Copenhagen', 800000, 45345),
       (5, 'Damascus', 10000000, 54678);
 
-    commit ;
+   
 
 
