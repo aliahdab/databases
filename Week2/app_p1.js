@@ -24,7 +24,7 @@ const connection = mysql.createConnection({
   }],
 
   );
-  connection.query(            ///////////////Q1
+  connection.query(            //1.What is the capital of country X ? (Accept X from user)
     'SELECT city.name FROM city INNER JOIN country ON city.countryCode = country.code where country.name= ? and country.capital=city.id',
     response.countryName,
     function (err, results) {
@@ -35,7 +35,7 @@ const connection = mysql.createConnection({
       }
     }
   )
-  connection.query( ///////////////Q2
+  connection.query(                  //2.List all the languages spoken in the region Y (Accept Y from user)
     'Select distinct(cl.language) from countrylanguage as cl inner join country as co on co.code=cl.countrycode where region=?',
     response.languagesSpoken,
     function (err, results) {
@@ -46,7 +46,8 @@ const connection = mysql.createConnection({
       }
     }
   )
-  connection.query( ///////////////Q3
+  connection.query(                      //3.Find the number of cities in which language Z is spoken (Accept Z from user)
+
     'select count(city.name) as SUM from city inner join countrylanguage as cl on cl.countrycode=city.countrycode where cl.language=?',
     response.numberCities,
     function (err, results) {
@@ -58,7 +59,7 @@ const connection = mysql.createConnection({
     }
   )
 
-  connection.query( ///////////////Q4
+  connection.query(                         //4.List all the continents with the number of languages spoken in each continent
     'SELECT country.continent, COUNT(distinct(countrylanguage.language)) as LanguagesNumber FROM country INNER JOIN countrylanguage ON country.code = countrylanguage.countrycode GROUP BY country.continent',
     function (err, results) {
       if (err) {
@@ -68,6 +69,18 @@ const connection = mysql.createConnection({
       }
     }
   )
+
+
+  // connection.query(                          //5. List countries with same official language in same region
+  //   'select c.name,c.region,l.language from country as c inner join countrylanguage as l on c.code=l.countrycode where l.isofficial ="T" order by c.region, l.language',
+  //   function (err, results) {
+  //     if (err) {
+  //       console.log(err)
+  //     } else {
+  //       console.log('List countries with same official language in same region', results);
+  //     }
+  //   }
+  // )
 
   connection.close
 })();
