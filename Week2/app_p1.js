@@ -25,7 +25,7 @@ const prompts = require('prompts');
 
   );
   connection.query(
-    'SELECT city.name FROM city INNER JOIN country ON city.countryCode = country.code where country.name= ?',
+    'SELECT city.name FROM city INNER JOIN country ON city.countryCode = country.code where country.name= ? and country.capital=city.id',
     response.countryName,
     function (err, results, fields) {
       console.log('The capital city for ' + response.countryName + ' is', results[0].name);
