@@ -1,7 +1,8 @@
-﻿CREATE DATABASE IF NOT EXISTS world;
+﻿CREATE SCHEMA IF NOT EXISTS world;
 USE world;
-DROP TABLE IF EXISTS city;
-DROP TABLE IF EXISTS country;
+SET AUTOCOMMIT=0;
+DROP TABLE IF EXISTS ´city´;
+DROP TABLE IF EXISTS ´country´;
 
 CREATE TABLE country
 (
@@ -20,6 +21,7 @@ CREATE TABLE country
     PRIMARY KEY(id),
     FOREIGN KEY(country_id) REFERENCES country(id)
   );
+commit;
 
   INSERT INTO country
       (name,capital,population)
@@ -31,7 +33,7 @@ CREATE TABLE country
       ('Syria', 'Damascus ', 25000000),
       ('Egypt', 'Cairo', 100000000),
       ('Germany', 'Berlin', 100000000);
-
+commit;
     INSERT INTO city
       (country_id,name,population,codeNumber)
     values
@@ -44,6 +46,4 @@ CREATE TABLE country
       (2, 'Copenhagen', 800000, 45345),
       (5, 'Damascus', 10000000, 54678);
 
-    commit ;
-
-
+SET AUTOCOMMIT=1;
