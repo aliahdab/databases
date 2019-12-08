@@ -1,29 +1,40 @@
-﻿CREATE SCHEMA IF NOT EXISTS world;
+﻿CREATE SCHEMA
+IF NOT EXISTS world;
 USE world;
-SET AUTOCOMMIT=0;
+SET AUTOCOMMIT
+=0;
 DROP TABLE IF EXISTS ´city´;
 DROP TABLE IF EXISTS ´country´;
 
 CREATE TABLE country
 (
-  id INT AUTO_INCREMENT ,
- name VARCHAR (30) NOT NULL UNIQUE,
- capital VARCHAR(30) NOT NULL ,
+  id INT
+  AUTO_INCREMENT ,
+ name VARCHAR
+  (30) NOT NULL UNIQUE,
+ capital VARCHAR
+  (30) NOT NULL ,
  population INT NOT NULL,
- PRIMARY KEY(id));
+ PRIMARY KEY
+  (id));
 
   CREATE TABLE city
   (
-    id INT AUTO_INCREMENT,country_id INT NOT NULL,
-    name VARCHAR(30) NOT NULL UNIQUE,
+    id INT
+    AUTO_INCREMENT,country_id INT NOT NULL,
+    name VARCHAR
+    (30) NOT NULL UNIQUE,
     population INT NOT NULL,
     codeNumber INT NOT NULL,
-    PRIMARY KEY(id),
-    FOREIGN KEY(country_id) REFERENCES country(id)
+    PRIMARY KEY
+    (id),
+    FOREIGN KEY
+    (country_id) REFERENCES country
+    (id)
   );
-commit;
+    commit;
 
-  INSERT INTO country
+    INSERT INTO country
       (name,capital,population)
     values
       ('SWEDEN', 'Stockholm', 9000000),
@@ -33,7 +44,7 @@ commit;
       ('Syria', 'Damascus ', 25000000),
       ('Egypt', 'Cairo', 100000000),
       ('Germany', 'Berlin', 100000000);
-commit;
+    commit;
     INSERT INTO city
       (country_id,name,population,codeNumber)
     values
@@ -46,4 +57,5 @@ commit;
       (2, 'Copenhagen', 800000, 45345),
       (5, 'Damascus', 10000000, 54678);
 
-SET AUTOCOMMIT=1;
+    SET AUTOCOMMIT
+    =1;
