@@ -8,16 +8,16 @@ const prompts = require('prompts');
   const response = await prompts({
     type: 'text',
     name: 'countryName',
-    message: 'What is the country name?'
+    message: 'What is the country name?',
+
   });
 
   let countryName = response.countryName;
   connection.query(
-    'SELECT capital FROM `country` WHERE `name` = ?',
+    'SELECT city.name FROM city INNER JOIN country ON city.countryCode = country.code where country.name= ?',
     countryName,
     function (err, results, fields) {
-      console.log(results); // results contains rows returned by server
-      console.log(fields); // fields contains extra meta data about results, if available
+      console.log(results[0]); // results contains rows returned by server
     }
   );
 })();
