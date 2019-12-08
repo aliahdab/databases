@@ -2,7 +2,6 @@
 const mysql = require('mysql2');
 const prompts = require('prompts');
 
-
 // create the connection to database
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -11,7 +10,6 @@ const connection = mysql.createConnection({
   database: 'new_world'
 })
 
-
   (async () => {
     const response = await prompts({
       type: 'text',
@@ -19,10 +17,8 @@ const connection = mysql.createConnection({
       message: 'What is the country name?'
     });
 
-    console.log(response.countryName);
+    var inputCountryName = response.countryName;
   })();
-
-
 
 
 // with placeholder
