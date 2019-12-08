@@ -36,7 +36,7 @@ const connection = mysql.createConnection({
     }
   )
   connection.query( ///////////////Q2
-    'Select cl.language from countrylanguage as cl inner join country as co on co.code=cl.countrycode where region=?',
+    'Select distinct(cl.language) from countrylanguage as cl inner join country as co on co.code=cl.countrycode where region=?',
     response.languagesSpoken,
     function (err, results) {
       if (err) {
@@ -59,7 +59,7 @@ const connection = mysql.createConnection({
   )
 
   connection.query( ///////////////Q4
-    'SELECT country.continent, COUNT(countrylanguage.language) as LanguagesNumber FROM country INNER JOIN countrylanguage ON country.code = countrylanguage.countrycode GROUP BY country.continent',
+    'SELECT country.continent, COUNT(distinct(countrylanguage.language)) as LanguagesNumber FROM country INNER JOIN countrylanguage ON country.code = countrylanguage.countrycode GROUP BY country.continent',
     function (err, results) {
       if (err) {
         console.log(err)
@@ -69,16 +69,6 @@ const connection = mysql.createConnection({
     }
   )
 
-  connection.query( ///////////////Q5
-    'SELECT country.continent, COUNT(countrylanguage.language) as LanguagesNumber FROM country INNER JOIN countrylanguage ON country.code = countrylanguage.countrycode GROUP BY country.continent',
-    function (err, results) {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('The continents with the number of languages spoken in each continent', results);
-      }
-    }
-  )
   connection.close
 })();
 
